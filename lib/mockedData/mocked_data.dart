@@ -13,5 +13,4 @@ class Movie {
       Movie('Venom', 'Place 4', 'assets/cp_marvel.jpg'),
     ];
   }
-
 }
