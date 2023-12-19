@@ -1,23 +1,3 @@
-class CarousellSizes {
-  static const Map<String, double> headliner = {
-    'containerHeight': 450.0,
-    'imageHeight': 380.0,
-    'imageWidth': 300.0,
-  };
-
-  static const Map<String, double> normal = {
-    'containerHeight': 250.0,
-    'imageHeight': 180.0,
-    'imageWidth': 130.0,
-  };
-
-  static const Map<String, double> horizontal = {
-    'containerHeight': 250.0,
-    'imageHeight': 170.0,
-    'imageWidth': 300.0,
-  };
-}
-
 class CarousellSize {
   CarousellSize._private(
       {required this.containerHeight,

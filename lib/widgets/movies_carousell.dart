@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:pocket_tv/mockedData/mocked_data.dart';
 
 class MoviesCarousell extends StatefulWidget {
-  const MoviesCarousell({Key? key, required this.category}) : super(key: key);
+  const MoviesCarousell({Key? key, required this.category, required this.containerHeight}) : super(key: key);
 
   final String category;
+  final double containerHeight;
 
   @override
   State<MoviesCarousell> createState() => _MoviesCarousell();
@@ -33,46 +34,49 @@ class _MoviesCarousell extends State<MoviesCarousell> {
   Widget build(BuildContext context) {
     List<Container> dots = buildDotsIndicator();
 
-    return Column(
-      children: [
-        Container(
-          alignment: Alignment.centerLeft,
-          child: Text(widget.category, style: TextStyle(fontSize: 18),)),
-        SizedBox(
-          height: 20,
-        ),    
-        Container(
-          height: 500,
-          child: PageView.builder(
-            onPageChanged: (index){
-              setState(() {
-                _activePage = index;
-              });
-            },
-            controller: _pageController,
-            itemCount: moviesList.length,
-            itemBuilder: (context, int index) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10.0),
-                  child: Image.asset(
-                    moviesList[index].image,
-                    fit: BoxFit.fill,
+    return Container(
+      margin: EdgeInsets.only(bottom: 20),
+      child: Column(
+        children: [
+          Container(
+            alignment: Alignment.centerLeft,
+            child: Text(widget.category, style: TextStyle(fontSize: 18),)),
+          SizedBox(
+            height: 20,
+          ),    
+          Container(
+            height: widget.containerHeight,
+            child: PageView.builder(
+              onPageChanged: (index){
+                setState(() {
+                  _activePage = index;
+                });
+              },
+              controller: _pageController,
+              itemCount: moviesList.length,
+              itemBuilder: (context, int index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10.0),
+                    child: Image.asset(
+                      moviesList[index].image,
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
-        ),
-        SizedBox(
-          height: 20,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: dots,
-        )
-      ],
+          SizedBox(
+            height: 20,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: dots,
+          )
+        ],
+      ),
     );
   }
 }

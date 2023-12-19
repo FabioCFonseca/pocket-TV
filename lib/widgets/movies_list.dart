@@ -12,31 +12,42 @@ class Carousell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 28),
-      height: carousellSizes.containerHeight,
+      constraints: BoxConstraints(maxHeight: 300),
+      margin: EdgeInsets.only(bottom: 1),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: Text('$category', style: TextStyle(fontSize: 18),),
+            padding: const EdgeInsets.only(bottom: 20),
+            child: Text(
+              '$category',
+              style: TextStyle(fontSize: 18),
+            ),
           ),
           Expanded(
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: moviesData.length,
                 itemBuilder: (context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(right: 20.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10.0),
-                      child: Image.asset(
-                        '${moviesData[index].image}',
-                        fit: BoxFit.fill,
-                        height: carousellSizes.imageHeight,
-                        width: carousellSizes.imageWidth,
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 20.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10.0),
+                          child: Image.asset(
+                            '${moviesData[index].image}',
+                            fit: BoxFit.cover,
+                            width: 125,
+                          ),
+                        ),
                       ),
-                    ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: Text(moviesData[index].name),
+                      ),
+                    ],
                   );
                 }),
           ),

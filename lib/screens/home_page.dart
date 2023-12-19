@@ -19,13 +19,15 @@ class HomePage extends StatelessWidget {
             children: [
               MoviesCarousell(
                 category: 'Trending',
+                containerHeight: 400,
               ),
               Carousell(
                   carousellSizes: CarousellSize.normal(),
                   category: 'New Movies'),
-              Carousell(
-                  carousellSizes: CarousellSize.horizontal(),
-                  category: 'You May Like'),
+              MoviesCarousell(
+                category: 'You May Like',
+                containerHeight: 180,
+              ),
               Carousell(
                   carousellSizes: CarousellSize.normal(),
                   category: 'TV Series'),
